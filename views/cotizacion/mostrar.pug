@@ -1,0 +1,102 @@
+extends ../layout/index
+
+block contenido
+    //pre=JSON.stringify(usuario, null, 2)
+    h2(class='text-3xl font-extrabold text-center mb-10')= pagina
+    div(class="flex flex-wrap gap-4 justify-center")
+        - const activeClass = "shadow-md brightness-110 transform scale-105"
+
+        a(href="?estatus=PENDIENTE" class=`${baseClass} ${estatusActual === 'PENDIENTE' ? 'bg-yellow-500 text-white border-yellow-500 ' + activeClass : 'bg-white text-yellow-600 border-yellow-200 hover:bg-yellow-50'}`) 
+            | Pendientes
+
+        a(href="?estatus=CERRADA" class=`${baseClass} ${estatusActual === 'CERRADA' ? 'bg-blue-600 text-white border-blue-600 ' + activeClass : 'bg-white text-blue-600 border-blue-200 hover:bg-blue-50'}`) 
+            | Cerradas
+
+        a(href="?estatus=VENCIDA" class=`${baseClass} ${estatusActual === 'VENCIDA' ? 'bg-red-600 text-white border-red-600 ' + activeClass : 'bg-white text-red-600 border-red-200 hover:bg-red-50'}`) 
+            | Vencidas
+    div(class='max-w-7xl mx-auto m-10')
+        if cotizaciones.length
+            div(class='bg-white shadow-xl rounded-lg overflow-hidden')
+                table(class='min-w-full divide-y divide-gray-200')
+                    thead(class="bg-gradient-to-r from-slate-800 to-slate-900 text-white")
+                        tr
+                            th(class='px-6 py-3 text-left text-xs font-bold  uppercase tracking-wider') ID 
+                            th(class='px-6 py-3 text-left text-xs font-bold  uppercase tracking-wider hidden lg:table-cell') Fecha Creación / Vencimiento
+                            th(class='px-6 py-3 text-left text-xs font-bold  uppercase tracking-widest hidden xl:table-cell') Cliente
+                            th(class='px-6 py-3 text-center text-xs font-bold  uppercase tracking-wider hidden sm:table-cell') Total
+                            th(class='px-6 py-3 text-center text-xs font-bold  uppercase tracking-wider hidden sm:table-cell') Estatus
+                            th(class='px-6 py-3 text-center text-xs font-bold  uppercase tracking-wider hidden md:table-cell') Descargar
+                            th(class='px-6 py-3 text-center text-xs font-bold  uppercase tracking-wider hidden lg:table-cell') Enviar a mi correo
+                            th(class='px-6 py-3 text-center text-xs font-bold uppercase tracking-wider hidden md:table-cell') Editar
+                            //th(class='px-6 py-3 text-center text-xs font-bold uppercase tracking-wider ') Cancelar
+                            th(class='px-6 py-3 text-center text-xs font-bold uppercase tracking-wider') Crear Pedido
+                            th(class='px-6 py-3 text-center text-xs font-bold uppercase tracking-wider')
+                    tbody(class='bg-white divide-y divide-gray-200')
+                        each cot in cotizaciones
+                            tr(class='hover:bg-gray-50 transition-colors')
+                                //- 1. ID / Fecha
+                                td(class='px-6 py-4 whitespace-nowrap')
+                                    div(class='text-sm font-bold text-blue-600') ID # #{cot.COTIZACION_ID}
+                                td(class='px-6 py-4 whitespace-nowrap hidden lg:table-cell')
+                                    div(class='text-xs text-gray-500') Creado:  #{new Date(cot.createdAt).toLocaleDateString('es-MX')}
+                                    div(class='text-xs text-gray-500') Vencimiento: #{new Date(cot.FECHA_VENCIMIENTO).toLocaleDateString('es-MX')}
+                                //- 2. Descripción
+                                //- td(class='px-6 py-4')
+                                //-     div(class='text-sm text-gray-900')= cot.DESCRIPCION
+                                //-     div(class='text-xs text-gray-400') Cliente: #{cliente.CLAVE_CLIENTE}
+                                
+                                //- 3. Total
+                                td(class='px-6 py-4 whitespace-normal hidden xl:table-cell break-words max-w-xs')
+                                    div(class='text-sm font-bold text-blue-600')= cliente.CLAVE_CLIENTE
+                                    div(class='text-xs text-gray-500')= cliente.NOMBRE
+
+                                td(class='px-6 py-4 whitespace-nowrap hidden sm:table-cell')
+                                    span(class='px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800')
+                                        | $#{cot.COSTO_TOTAL}
+
+                                //- 4. Estatus
+                                td(class='px-6 py-4 whitespace-nowrap hidden sm:table-cell')
+                                    if(cot.ESTATUS === 'PENDIENTE')
+                                        span(class='px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800') #{cot.ESTATUS}
+                                    else if(cot.ESTATUS === 'CERRADA')
+                                        span(class='px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800') #{cot.ESTATUS}
+                                    else if(cot.ESTATUS === 'VENCIDA')
+                                        span(class='px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800') #{cot.ESTATUS}
+                                    else if(cot.ESTATUS === 'CANCELADA')
+                                        span(class='px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full bg-gray-100 text-gray-800') #{cot.ESTATUS}
+                                
+                                td(class='px-6 py-4 whitespace-nowrap text-center hidden md:table-cell')
+                                    a(href=`/cotizacion/pdf/${cot.COTIZACION_ID}` title="Descargar Pdf" class=`inline-block`)
+                                        img(src="/uploads/pdf.png" alt="Descargar Pdf" class=`w-6 h-6 hover:scale-110 transition-transform mx-auto`)
+                                
+                                td(class='px-6 py-4 whitespace-nowrap text-center hidden lg:table-cell')
+                                    a(href=`/cotizacion/enviar/${cot.COTIZACION_ID}` title="Enviar" class=`inline-block ${cot.ESTATUS !== 'PENDIENTE' ? 'pointer-events-none cursor-not-allowed' : '' }`)
+                                        img(src="/uploads/mail.png" alt="Enviar" class=`${cot.ESTATUS === 'PENDIENTE' ? 'w-6 h-6 hover:scale-110 transition-transform mx-auto' : 'w-6 h-6 opacity-50 cursor-not-allowed mx-auto pointer-events-none'}`)
+                                //- 5. Columna EDITAR
+                                td(class='px-6 py-4 whitespace-nowrap text-center hidden md:table-cell')
+                                    a(href=`/cotizacion/editar/${cot.COTIZACION_ID}` title="Editar" class=`inline-block ${cot.ESTATUS !== 'PENDIENTE' ? 'pointer-events-none cursor-not-allowed' : '' }`)
+                                        img(src="/uploads/boton-editar.png" alt="Editar" class=`${cot.ESTATUS === 'PENDIENTE' ? 'w-6 h-6 hover:scale-110 transition-transform mx-auto' : 'w-6 h-6 opacity-50 cursor-not-allowed mx-auto pointer-events-none'}`)
+
+                                //- 6. Columna CANCELAR
+                                //- td(class='px-6 py-4 whitespace-nowrap text-center')
+                                //-     if cot.ESTATUS === 'PENDIENTE'
+                                //-         form(action=`/cotizacion/cancelar/${cot.COTIZACION_ID}` method="POST" onsubmit="return confirm('¿Estás seguro de que deseas cancelar esta cotización?')")
+                                //-             input(type="hidden" name="_csrf" value=csrfToken)
+                                //-             button(type="submit" title="Cancelar" class="hover:scale-110 transition-transform")
+                                //-                 img(src="/uploads/cancelar.png" alt="Cancelar" class="w-6 h-6 mx-auto")
+                                //-     else
+                                //-         // Icono deshabilitado si no está pendiente
+                                //-         img(src="/uploads/cancelar.png" alt="Cancelar" class="w-6 h-6 opacity-30 mx-auto grayscale cursor-not-allowed")
+
+                                //- 7. Columna CREAR PEDIDO
+
+                                td(class='px-6 py-4 whitespace-normal text-right text-xs font-semibold text-gray-900')
+                                    form(action=`/cotizacion/datos/${cot.COTIZACION_ID}` method="POST")
+                                        input(type="hidden" name="_csrf" value=csrfToken)
+                                        button(type="submit" class=`${cot.ESTATUS === 'PENDIENTE' ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed'} text-white px-4 py-2 rounded shadow text-xs uppercase font-bold transition-all inline-flex items-center gap-2`) Generar Pedido
+        else
+            div(class='text-center bg-white shadow p-10 rounded-lg')
+                p(class='text-gray-600 text-xl') No hay cotizaciones registradas aún.
+    
+    div(class="max-w-7xl mx-auto flex justify-center sm:justify-start")
+        a(href="/catalogo" class="rounded-lg py-3 px-10 mb-10 bg-red-600 hover:bg-red-700 text-sm font-bold text-white text-center uppercase transition-all shadow-md") Volver al Catálogo
