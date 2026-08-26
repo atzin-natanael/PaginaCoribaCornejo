@@ -35,7 +35,7 @@ block contenido
                 id="termino" 
                 name="termino" 
                 placeholder="Buscar Artículo..." 
-                class="flex-1 p-3 uppercase rounded-lg shadow-inner text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-500"
+                class="flex-1 p-3 uppercase rounded-lg shadow-inner text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             )
             input(
                 type="submit" 
@@ -59,7 +59,7 @@ block contenido
                             td.p-3.text-center
                                 button(
                                     type="button"
-                                    class="btn-preview p-1.5 rounded-full hover:bg-gray-200 text-gray-500 hover:text-red-600 transition-colors"
+                                    class="btn-preview p-1.5 rounded-full hover:bg-gray-200 text-gray-500 hover:text-blue-600 transition-colors"
                                     data-nombre=codigo.NOMBRE
                                     data-caja=codigo.CONTENIDO_CAJA
                                     data-img=`/uploads/productos/${codigo.CLAVE_ARTICULO}_1.webp`
@@ -72,7 +72,7 @@ block contenido
                             td.py-3.px-4.text-sm.text-gray-600= codigo.NOMBRE
                             td.py-3.px-4.font-bold.text-blue-700= `$${codigo.precioNeto} MXN`
                             td.py-3.px-4.text-sm.text-gray-600= codigo.CONTENIDO_CAJA
-                            td.py-3.px-4(class=codigo.TOTAL_EXISTENCIA > 0 ? 'text-green-600' : 'text-red-600')= codigo.TOTAL_EXISTENCIA
+                            td.py-3.px-4(class=codigo.TOTAL_EXISTENCIA > 0 ? 'text-green-600' : 'text-blue-600')= codigo.TOTAL_EXISTENCIA
                                 
                     else
                         tr
@@ -94,13 +94,13 @@ block contenido
                     
                     //- << IR AL INICIO
                     a(href=`/catalogo?pagina=1${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7")
 
                     //- < ANTERIOR (Flecha individual)
                     a(href=`/catalogo?pagina=${paginaActual - 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7")
 
@@ -112,17 +112,17 @@ block contenido
 
                     - for (let i = inicio; i <= fin; i++)
                         a(href=`/catalogo?pagina=${i}${termino ? '&termino='+termino : ''}` 
-                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-red-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-red-500 hover:text-red-600'}`) #{i}
+                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-blue-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600'}`) #{i}
 
                     //- > SIGUIENTE (Flecha individual)
                     a(href=`/catalogo?pagina=${paginaActual + 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
 
                     //- >> IR AL FINAL
                     a(href=`/catalogo?pagina=${paginas}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7")
 

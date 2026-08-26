@@ -46,7 +46,7 @@ block contenido
             
             //- COLUMNA IZQUIERDA: Listado (7 de 12)
             div(class="lg:col-span-7")
-                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-red-600 min-w-full")
+                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-blue-600 min-w-full")
                     h3.text-xl.font-bold.mb-4 Listado de Productos
                 div
                     table.min-w-full.bg-white.shadow-md.rounded-lg
@@ -146,13 +146,13 @@ block contenido
                     
                     //- << IR AL INICIO
                     a(href=`/cotizacion/crear?pagina=1${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-gray-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7")
 
                     //- < ANTERIOR (Flecha individual)
                     a(href=`/cotizacion/crear?pagina=${paginaActual - 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-gray-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7")
 
@@ -164,23 +164,23 @@ block contenido
 
                     - for (let i = inicio; i <= fin; i++)
                         a(href=`/cotizacion/crear?pagina=${i}${termino ? '&termino='+termino : ''}` 
-                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-red-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-red-500 hover:text-red-600'}`) #{i}
+                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-blue-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600'}`) #{i}
 
                     //- > SIGUIENTE (Flecha individual)
                     a(href=`/cotizacion/crear?pagina=${paginaActual + 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
 
                     //- >> IR AL FINAL
                     a(href=`/cotizacion/crear?pagina=${paginas}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7")
 
             //- COLUMNA DERECHA: ASIDE (5 de 12)
             aside(class="lg:col-span-5")
-                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-red-600 w-full")
+                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-blue-600 w-full")
                     h3.text-xl.font-bold.mb-4 Mi Cotización
                     
                     if cotizacion && cotizacion.length
