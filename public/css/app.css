@@ -701,6 +701,9 @@ video {
 .h-6 {
   height: 1.5rem;
 }
+.h-14 {
+  height: 3.5rem;
+}
 .max-h-full {
   max-height: 100%;
 }
