@@ -108,7 +108,7 @@ block contenido
                         - }
                         - for (let i = inicio; i <= fin; i++)
                             a(href=termino ? `/crearPedido?pagina=${i}&termino=${termino}` : `/crearPedido?pagina=${i}`)
-                                input(type="button" value=i class=`page-btn py-2 px-4 rounded cursor-pointer ${paginaActual === i ? 'bg-red-500 text-white font-bold' : 'bg-gray-300 hover:bg-gray-400'}`)
+                                input(type="button" value=i class=`page-btn py-2 px-4 rounded cursor-pointer ${paginaActual === i ? 'bg-blue-500 text-white font-bold' : 'bg-gray-300 hover:bg-gray-400'}`)
                         // > Siguiente
                         a(
                         href=paginaActual !== paginas
@@ -165,7 +165,7 @@ block contenido
                             a(href="/#" class="inline-block")
                                 button(
                                     type="button"
-                                    class="flex items-center gap-2 p-2 rounded font-medium transition-colors bg-slate-800 text-white hover:bg-red-600 shadow-sm"
+                                    class="flex items-center gap-2 p-2 rounded font-medium transition-colors bg-slate-800 text-white hover:bg-blue-400 shadow-sm"
                                 )
                                     img(src="/uploads/delete.png" alt="Icono" class="h-4 w-4 invert")
                                     span Eliminar

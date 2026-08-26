@@ -116,7 +116,7 @@ block contenido
                             - }
                             - for (let i = inicio; i <= fin; i++)
                                 a(href=termino ? `/cotizacion/crear?pagina=${i}&termino=${termino}` : `/cotizacion/crear?pagina=${i}`)
-                                    input(type="button" value=i class=`page-btn py-2 px-4 rounded cursor-pointer ${paginaActual === i ? 'bg-red-500 text-white font-bold' : 'bg-gray-300 hover:bg-gray-400'}`)
+                                    input(type="button" value=i class=`page-btn py-2 px-4 rounded cursor-pointer ${paginaActual === i ? 'bg-blue-500 text-white font-bold' : 'bg-gray-300 hover:bg-gray-400'}`)
                             // > Siguiente
                             a(
                             href=paginaActual !== paginas
@@ -147,7 +147,7 @@ block contenido
     aside(class="lg:col-span-1")
     div(class="sticky top-5 bg-white shadow-xl rounded-lg border")
 
-        div(class="bg-red-600 p-4")
+        div(class="bg-blue-400 p-4")
             h2.text-white.text-center.text-xl.font-bold Mi Cotización
 
         div.p-4

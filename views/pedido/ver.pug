@@ -49,10 +49,10 @@ block contenido
                         span.text-gray-500.font-bold.uppercase.tracking-tighter Total del Pedido:
                         div.flex.items-center.gap-2
                             span.text-gray-400.text-2xl.font-bold $
-                            span.bg-red-600.text-white.px-6.py-1.rounded-full.text-4xl.font-black= totalCot
+                            span.bg-blue-400.text-white.px-6.py-1.rounded-full.text-4xl.font-black= totalCot
 
                 else
                     div.text-center.py-20
                         p.text-gray-400.text-lg No hay artículos para mostrar.
     div(class="max-w-6xl mx-auto flex justify-center sm:justify-start px-4")
-        a(href=`/pedido/mostrar/${usuario.CLIENTE_ID}` class="rounded-lg py-3 px-10 mb-10 bg-red-600 hover:bg-red-700 text-sm font-bold text-white text-center uppercase transition-all shadow-md") Volver a mis pedidos
+        a(href=`/pedido/mostrar/${usuario.CLIENTE_ID}` class="rounded-lg py-3 px-10 mb-10 bg-blue-400 hover:bg-blue-400 text-sm font-bold text-white text-center uppercase transition-all shadow-md") Volver a mis pedidos

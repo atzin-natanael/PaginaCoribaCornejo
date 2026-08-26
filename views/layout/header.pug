@@ -17,13 +17,13 @@ header.bg-slate-300.border-b.border-stone-900.py-3.shadow-sm
         
             if usuario
                 //- Agregamos 'border' a la condición de activo
-                a(class=`${linkClass} ${pagina === 'Catálogo' ? 'bg-red-600  text-white shadow-md border  ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href="/catalogo") Catálogo
+                a(class=`${linkClass} ${pagina === 'Catálogo' ? 'bg-blue-400  text-white shadow-md border  ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href="/catalogo") Catálogo
                 
-                a(class=`${linkClass} ${pagina === 'Crear Cotización' ? 'bg-red-600 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href="/cotizacion/crear") Crear Cotización
+                a(class=`${linkClass} ${pagina === 'Crear Cotización' ? 'bg-blue-400 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href="/cotizacion/crear") Crear Cotización
                 
-                a(class=`${linkClass} ${pagina === 'Mis Cotizaciones' ? 'bg-red-600 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href=`/cotizacion/mostrar/${usuario.CLIENTE_ID}`) Mis Cotizaciones
+                a(class=`${linkClass} ${pagina === 'Mis Cotizaciones' ? 'bg-blue-400 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href=`/cotizacion/mostrar/${usuario.CLIENTE_ID}`) Mis Cotizaciones
                 
-                a(class=`${linkClass} ${pagina === 'Mis Pedidos' ? 'bg-red-600 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href=`/pedido/mostrar/${usuario.CLIENTE_ID}`) Mis Pedidos
+                a(class=`${linkClass} ${pagina === 'Mis Pedidos' ? 'bg-blue-400 text-white shadow-md border ' : 'text-slate-600 hover:bg-slate-200 border border-transparent'}` href=`/pedido/mostrar/${usuario.CLIENTE_ID}`) Mis Pedidos
 
                 //- Separador y Botones de cuenta
             .h-6.w-px.bg-gray-300.mx-2
@@ -34,4 +34,4 @@ header.bg-slate-300.border-b.border-stone-900.py-3.shadow-sm
 
             form(action="/auth/cerrar-sesion" method="POST" class="ml-2")
                 input(type="hidden" name="_csrf" value=csrfToken)
-                button(type="submit" class="bg-gray-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-xs md:text-sm xl:text-base font-bold tracking-tight transition-all shadow-sm") Cerrar Sesión
+                button(type="submit" class="bg-gray-600 hover:bg-blue-400 text-white px-4 py-2 rounded-md text-xs md:text-sm xl:text-base font-bold tracking-tight transition-all shadow-sm") Cerrar Sesión
