@@ -11,7 +11,7 @@ block contenido
                 id="termino" 
                 name="termino" 
                 placeholder="Buscar Artículo..." 
-                class="flex-1 p-3 uppercase rounded-lg shadow-inner text-sm w-full focus:outline-none focus:ring-2 focus:ring-red-500 border border-gray-200"
+                class="flex-1 p-3 uppercase rounded-lg shadow-inner text-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200"
             )
             input(
                 type="submit" 
@@ -26,7 +26,7 @@ block contenido
             
             //- COLUMNA IZQUIERDA: Listado (7 de 12)
             div(class="lg:col-span-7")
-                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-red-600 min-w-full")
+                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-blue-600 min-w-full")
                     h3.text-xl.font-bold.mb-4 Listado de Productos
                 div
                     table.min-w-full.bg-white.shadow-md.rounded-lg
@@ -55,7 +55,7 @@ block contenido
                                     td.p-3.text-center
                                         button(
                                             type="button"
-                                            class="btn-preview p-1.5 rounded-full hover:bg-gray-200 text-gray-500 hover:text-red-600 transition-colors"
+                                            class="btn-preview p-1.5 rounded-full hover:bg-gray-200 text-gray-500 hover:text-blue-600 transition-colors"
                                             data-nombre=codigo.NOMBRE
                                             data-caja=codigo.CONTENIDO_CAJA
                                             data-img=`/uploads/productos/${codigo.CLAVE_ARTICULO}_1.webp`
@@ -69,7 +69,7 @@ block contenido
                                     
                                     // 3. Stock (Alineado al centro para que no se pierda)
                                     td.p-3.text-center.text-base
-                                        span(class=[ "font-medium", codigo.TOTAL_EXISTENCIA > 0 ? 'text-green-600' : 'text-red-600'])
+                                        span(class=[ "font-medium", codigo.TOTAL_EXISTENCIA > 0 ? 'text-green-600' : 'text-blue-600'])
                                             | #{codigo.TOTAL_EXISTENCIA}
                                     
                                     // 4. PRECIO (Alineado a la derecha suele verse mejor con dinero)
@@ -124,13 +124,13 @@ block contenido
                     
                     //- << IR AL INICIO
                     a(href=`/cotizacion/editar?pagina=1${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7")
 
                     //- < ANTERIOR (Flecha individual)
                     a(href=`/cotizacion/editar?pagina=${paginaActual - 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === 1 ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7")
 
@@ -142,23 +142,23 @@ block contenido
 
                     - for (let i = inicio; i <= fin; i++)
                         a(href=`/cotizacion/editar?pagina=${i}${termino ? '&termino='+termino : ''}` 
-                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-red-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-red-500 hover:text-red-600'}`) #{i}
+                        class=`w-10 h-10 flex items-center justify-center rounded border text-sm font-bold transition-all ${paginaActual === i ? 'bg-blue-400 border-blue-600 text-white shadow-md scale-105' : 'bg-white border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600'}`) #{i}
 
                     //- > SIGUIENTE (Flecha individual)
                     a(href=`/cotizacion/editar?pagina=${paginaActual + 1}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7")
 
                     //- >> IR AL FINAL
                     a(href=`/cotizacion/editar?pagina=${paginas}${termino ? '&termino='+termino : ''}` 
-                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-red-500 hover:text-red-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
+                    class=`p-2 min-w-[40px] h-10 flex items-center justify-center rounded border border-gray-300 bg-white text-gray-500 hover:bg-blue-50 hover:border-blue-500 hover:text-blue-600 transition-colors ${paginaActual === paginas ? 'opacity-30 pointer-events-none' : ''}`)
                         svg(class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24")
                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7")
 
             //- COLUMNA DERECHA: ASIDE (5 de 12)
             aside(class="lg:col-span-5")
-                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-red-600 w-full")
+                div(class="bg-white p-4 rounded-lg shadow-xl border-t-4 border-blue-600 w-full")
                     h3.text-xl.font-bold.mb-4 Mi Cotización
                     if cotizacion && cotizacion.length
                         div.overflow-x-auto
@@ -181,7 +181,7 @@ block contenido
                                             td.py-3.text-sm.font-bold= item.CLAVE_ARTICULO
                                             //- Truncar nombre si es muy largo
                                             td(class="py-3 font-medium leading-tight text-xs xl:text-sm max-w-[120px] whitespace-normal pl-3 xl:pl-0")= item.NOMBRE
-                                            td(class=[ "py-3 font-medium text-xs lg:text-sm", item.EXISTENCIA < item.CANTIDAD ? "text-red-600 text-right" : "text-green-600 text-right"])= item.EXISTENCIA
+                                            td(class=[ "py-3 font-medium text-xs lg:text-sm", item.EXISTENCIA < item.CANTIDAD ? "text-blue-600 text-right" : "text-green-600 text-right"])= item.EXISTENCIA
                                             //- PRECIO Original (Tachado para que se note el descuento)
                                             td.py-3.text-right.text-blue-600.text-sm.font-medium $#{item.PRECIO_DESCUENTO}
                                             
@@ -201,7 +201,7 @@ block contenido
                                                 //span.px-2.py-1.bg-gray-100.rounded.border= item.CANTIDAD
                                                 //input.CANTIDAD(type="hidden" value=item.CANTIDAD)
                                             //- Precio Final (El que paga)
-                                            td.py-3.text-right.font-bold.text-red-600 $#{item.IMPORTE_TOTAL}
+                                            td.py-3.text-right.font-bold.text-blue-600 $#{item.IMPORTE_TOTAL}
                                             
                                             td.py-3.text-right.font-bold.text-green-600.text-sm $#{item.IMPORTE_TOTAL}
                                             
@@ -209,7 +209,7 @@ block contenido
                                                 form(action="/cotizacion/eliminar-producto-edit" method="POST")
                                                     input(type="hidden" name="_csrf" value=csrfToken)
                                                     input(type="hidden" name="articuloId" value=item.ART_ID)
-                                                    button(type="submit" class="text-gray-500 hover:text-red-800 transition-colors" title="Eliminar de la cotización")
+                                                    button(type="submit" class="text-gray-500 hover:text-blue-800 transition-colors" title="Eliminar de la cotización")
                                                         svg(xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor")
                                                             path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16")
                     
