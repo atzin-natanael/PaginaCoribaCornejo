@@ -87,7 +87,7 @@ const crearCotizacion = async (req, res) => {
     
     const descuento = await DescuentosClientes.findOne({ where: { CLIENTE_ID: CLIENTE_ID } });
     try {
-        const respuesta = await fetch(`${process.env.API_URL}/codigos?pagina=${pagina}&categoria=${categoria}&termino=${termino}&sort=${sort}&order=${order}`);
+        const respuesta = await fetch(`${process.env.API_URL}/apicornejo/codigos?pagina=${pagina}&categoria=${categoria}&termino=${termino}&sort=${sort}&order=${order}`);
         let datos = await respuesta.json();
         const arreglo = datos.datos;
         // --- INICIO DE SINCRONIZACIÓN DEL CARRITO ---
@@ -209,7 +209,7 @@ const agregarArticuloACotizacion = async (req, res) => {
     //console.log('**********************Agregar ART_ID:', req.body, 'Cantidad:', CANTIDAD, 'Término:', termino);
     const clienteId = req.usuario.CLIENTE_ID; // Asegúrate de que el cliente esté almacenado en la sesión
     const descuento = await DescuentosClientes.findOne({ where: { CLIENTE_ID: clienteId } });    
-    const articuloAct = await fetch(`${process.env.API_URL}/codigos/${articuloId}`).then(res => res.json()).then(data => data[0]);
+    const articuloAct = await fetch(`${process.env.API_URL}/apicornejo/codigos/${articuloId}`).then(res => res.json()).then(data => data[0]);
     //console.log("Artículo actual:", articuloAct);
     console.log("Descuento encontrado:", descuento.DESCUENTO);
     if (!req.session.cotizacionNueva) {
@@ -324,7 +324,7 @@ const editarArticuloCotizacion = async (req, res) => {
     }
 
     try {
-        const respuesta = await fetch(`${process.env.API_URL}/codigos/${articuloId}`);
+        const respuesta = await fetch(`${process.env.API_URL}/apicornejo/codigos/${articuloId}`);
         const resultado = await respuesta.json();
         const articulo = resultado[0]; 
 
@@ -768,7 +768,7 @@ const verCotizacion = async (req, res) => {
         const partidasDB = await respDetalle.json();
 
         const partidasConCalculos = await Promise.all(partidasDB.map(async (item) => {
-            const respArt = await fetch(`${process.env.API_URL}/codigos/${item.ART_ID}`);
+            const respArt = await fetch(`${process.env.API_URL}/apicornejo/codigos/${item.ART_ID}`);
             const dataArt = await respArt.json();
             const infoActual = dataArt[0];
             console.log('información actual', infoActual)
@@ -825,7 +825,7 @@ const verPedido = async (req, res) => {
         const partidasDB = await respDetalle.json();
 
         const partidasConCalculos = await Promise.all(partidasDB.map(async (item) => {
-            const respArt = await fetch(`${process.env.API_URL}/codigos/${item.ART_ID}`);
+            const respArt = await fetch(`${process.env.API_URL}/apicornejo/codigos/${item.ART_ID}`);
             const dataArt = await respArt.json();
             const infoActual = dataArt[0];
 
@@ -876,7 +876,7 @@ const copiarPedido = async (req, res) => {
     const descuento = await DescuentosClientes.findOne({ where: { CLIENTE_ID: CLIENTE_ID } });
     try {
         // 1. Catálogo (Siempre se lee de la API para tener stock actualizado)
-        const respCatalogo = await fetch(`${process.env.API_URL}/codigos?pagina=${pagina}&termino=${termino}&sort=${sort}&order=${order}`);
+        const respCatalogo = await fetch(`${process.env.API_URL}/apicornejo/codigos?pagina=${pagina}&termino=${termino}&sort=${sort}&order=${order}`);
         let articulosCatalogo = await respCatalogo.json();
         const arreglo = articulosCatalogo.datos;
         const porcentajeDesc = Number(descuento.DESCUENTO) / 100;
