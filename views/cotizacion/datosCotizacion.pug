@@ -5,7 +5,18 @@ block contenido
     //- Estos pre son excelentes para debug, pero quítalos antes de producción
     //- pre=JSON.stringify(COTIZACION_ID , null, 2)
     
-    div(class="max-w-4xl mx-auto my-10")
+    div(class="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-lg")
+        label(class="flex items-center gap-3 cursor-pointer")
+            input#requiereFactura(
+                type="checkbox"
+                name="requiereFactura"
+                value="1"
+                class="w-5 h-5 text-blue-600 rounded cursor-pointer"
+            )
+
+            span(class="font-bold text-gray-700")
+                | ¿Requiere factura?
+    div#datosFactura(class="hidden max-w-4xl mx-auto my-10")
         //- EL FORM DEBE ENVOLVER TODO EL CONTENIDO DE LA TARJETA
         form(action=`/pedido/crear/${COTIZACION_ID}` method="POST" class="bg-white shadow-lg rounded-xl p-6 md:p-10 border border-gray-100")
             input(type="hidden" name="_csrf" value=csrfToken)
@@ -37,7 +48,6 @@ block contenido
                     option(value="G01") G01 - Adquisición de mercancías
                     option(value="G03") G03 - Gastos en general
                     option(value="S01") S01 - Sin efectos fiscales
-                    option(value="CP01") CP01 - Pagos
 
             //- Comentarios
             div(class="mt-6")
@@ -50,6 +60,18 @@ block contenido
                     svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor")
                         path(fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd")
                     | Confirmar datos
+
+    div#btnNext(class="pt-8 justify-center flex")
+        form(action=`/pedido/crear/${COTIZACION_ID}` method="POST")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            input(type="hidden" name="metodoPago" value="PUE")
+            input(type="hidden" name="formaPago" value="03")
+            input(type="hidden" name="usoCFDI" value="S01")
+            input(type="hidden" name="comentarios" value="No requiere factura")
+            button(type="submit" class="max-w-4xl bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-lg shadow-md uppercase text-sm transition-all flex items-center justify-center gap-2" onclick="return confirm('¿Estás seguro de que deseas continuar?')")
+                svg(xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor")
+                    path(fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd")
+                | Siguiente   
 
 block scripts
     script(src="/src/js/facturacion.js")

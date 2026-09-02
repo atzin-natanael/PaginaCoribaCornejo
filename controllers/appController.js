@@ -20,6 +20,7 @@ const inicio = async (req, res) => {
     try {
         console.log('API URL:',     process.env.API_URL);
         const respuesta = await fetch(`${process.env.API_URL}/apicornejo/codigos?pagina=${pagina}&categoria=${categoria}&termino=${termino}&sort=${sort}&order=${order}`);
+        console.log('Respuesta de la API:', respuesta.status, respuesta.statusText);
         let datos = await respuesta.json();
         const arreglo = datos.datos;
         // 🔎 FILTRO
